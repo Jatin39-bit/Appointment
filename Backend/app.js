@@ -22,9 +22,6 @@ app.use('/user', userRouter);
 app.use('/doctor',doctorRouter)
 app.use('/admin',adminRouter)
 
-app.get('*', (req, res) => {
-    res.send('Incorrect URL');
-})
 
 app.use(express.static(path.join(__dirname, 'build')));
 
