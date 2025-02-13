@@ -4,8 +4,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build-client": "cd ../frontend && npm install && npm run build",
-    "postinstall": "npm run build-client",
     "dev": "nodemon server.js"
   },
   "dependencies": {
