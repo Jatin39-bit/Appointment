@@ -31,7 +31,7 @@ const UserProtectedWrapper = ({ children }) => {
         setToken(null);
         navigate("/user/login");
       }
-      response.data.birthday=response!.data.birthday.split('T')[0]
+      response.data.birthday=response.data.birthday?.split('T')[0]
       setUser(response.data);
       setLoading(false);
     } catch (error) {
