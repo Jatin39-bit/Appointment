@@ -22,6 +22,7 @@ const UserSignup = () => {
       );
       if (response.status === 201) {
         localStorage.setItem("token", response.data);
+        alert('User registered successfully')
         navigate("/user/home");
       }
     } catch (error) {
