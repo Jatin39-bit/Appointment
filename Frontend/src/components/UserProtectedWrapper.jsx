@@ -8,8 +8,6 @@ import { UserDataContext } from "../context/UserContext";
 
 const UserProtectedWrapper = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  console.log('token')
-  console.log(localstorage.getItem("https://appointment-frontend-iujd.onrender.com"))
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const {user, setUser} = useContext(UserDataContext);
@@ -33,7 +31,7 @@ const UserProtectedWrapper = ({ children }) => {
         setToken(null);
         navigate("/user/login");
       }
-      response.data.birthday=response.data.birthday.split('T')[0]
+      response.data.birthday=response!.data.birthday.split('T')[0]
       setUser(response.data);
       setLoading(false);
     } catch (error) {
