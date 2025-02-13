@@ -8,6 +8,8 @@ import { UserDataContext } from "../context/UserContext";
 
 const UserProtectedWrapper = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  console.log('token')
+  console.log(localstorage.getItem("https://appointment-frontend-iujd.onrender.com"))
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const {user, setUser} = useContext(UserDataContext);
