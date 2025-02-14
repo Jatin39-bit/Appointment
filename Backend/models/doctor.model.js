@@ -16,7 +16,7 @@ const doctorSchema = new mongoose.Schema({
         type:String,
         required:true,
         minLength:6,
-        selection:true
+        select:false
     },
     phone: {
         type: Number,

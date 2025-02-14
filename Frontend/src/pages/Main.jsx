@@ -85,9 +85,6 @@ const Main = (props) => {
     }
   ];
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
 
   return (
     <div className="w-full h-full px-32">
@@ -154,7 +151,9 @@ const Main = (props) => {
         </h3>
 
         {/* Doctor cards */}
-        <div className=" mb-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-4 w-full">
+        {loading? (<div className=" mb-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-4 w-full">
+          Loading
+        </div>):(<div className=" mb-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 p-4 w-full">
           {doctors.map((doctor) => (
             <div  
               key={doctor._id}
@@ -172,7 +171,7 @@ const Main = (props) => {
               </h4>
             </div>
           ))}
-        </div>
+        </div>)}
       </div>
       <Footer />
     </div>
