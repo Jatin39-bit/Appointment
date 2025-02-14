@@ -29,7 +29,6 @@ const Main = (props) => {
           {params: {filter: 'all'}}
         );
         setDoctors(res.data);
-        console.log(res.data)
         setLoading(false);
   
       } catch (error) {
