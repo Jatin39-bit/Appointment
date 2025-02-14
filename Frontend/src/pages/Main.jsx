@@ -71,6 +71,10 @@ const Main = (props) => {
       name: "Gynecologist",
       img: "http://picsum.photos/200/200",
     },
+    {
+      name:"General physician",
+      img: "../assets/general physician.svg"
+    }
   ];
 
   if (loading) {
@@ -86,12 +90,11 @@ const Main = (props) => {
         <h1 className="text-3xl font-semibold text-center mt-6">
           Welcome to the world of HealthCare
         </h1>
-        <div className="flex justify-center mt-10">
-          <img
-            src="http://picsum.photos/600/200"
-            alt="main"
-            className="w-full h-[40%]"
-          />
+        <div className="flex py-4 justify-center mt-10 bg-[#5F6FFF]">
+          <div></div>
+          <div>
+            <img src="../assets/doc image.png" />
+          </div>
         </div>
       </div>
 

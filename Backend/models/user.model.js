@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
         Selection:true
     },
     phone: {
-        type: Number,
+        type: Number
     },
     gender:{
         type:String,

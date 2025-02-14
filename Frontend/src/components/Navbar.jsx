@@ -33,7 +33,7 @@ const Navbar = () => {
             <Link to="/doctor">ALL DOCTOR</Link>
             <Link to="/about">ABOUT</Link>
             <Link to="/contact">CONTACT</Link>
-            <Link to="/admin/login">ADMIN PANNEL</Link>
+            <Link to="/admin/login">ADMIN PANEL</Link>
         </div>
         {loggedIn ?
         <div className="dropdown ">
