@@ -27,7 +27,7 @@ app.use('/admin',adminRouter)
 
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.send("Check your URL")
 });
 
 

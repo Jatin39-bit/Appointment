@@ -18,7 +18,7 @@ module.exports.authUser = async (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        const user = await userModel.findById(decoded._id).select('+password');
+        const user = await userModel.findById(decoded._id)
         if (!user.$isEmpty()) {
             req.user = user;
             next();
