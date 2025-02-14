@@ -95,7 +95,7 @@ const Main = (props) => {
         <h1 className="text-3xl font-semibold text-center mt-6">
           Welcome to the world of HealthCare
         </h1>
-        <div className="flex justify-center mt-10 bg-[#5F6FFF]">
+        <div className="flex justify-center mt-10 bg-[#5F6FFF] min-h-[65%]">
           <div className="w-1/2 flex flex-col items-center justify-center">
             <h1 className="text-5xl font-bold  text-white ">Book Appointment <br />With Trusted Doctors</h1>
             <div class="flex flex-col md:flex-row items-center gap-3 text-white text-sm font-light mt-2"><img class="w-28" src={short_img} alt=""/><p>Simply browse through our extensive list of trusted doctors, <br /> schedule your appointment hassle-free.</p></div>
