@@ -6,6 +6,14 @@ import "../css/main-css.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import generalPhysician from "../assets/general_physician.png"
+import doc_image from '../assets/doc_image.png'
+import short_img from '../assets/short_img.png'
+import derma from "../assets/dermatologist.png"
+import gyneco from '../assets/gynecologist.png'
+import neuro from '../assets/neurologist.png'
+import pedia from '../assets/pediatricians.png'
+import sto from '../assets/stomach.png'
 
 const Main = (props) => {
   const [doctors, setDoctors] = useState([]);
@@ -21,6 +29,7 @@ const Main = (props) => {
           {params: {filter: 'all'}}
         );
         setDoctors(res.data);
+        console.log(res.data)
         setLoading(false);
   
       } catch (error) {
@@ -33,47 +42,47 @@ const Main = (props) => {
   const specialities = [
     {
       name: "Cardiologist",
-      img: "http://picsum.photos/200/200",
-    },
-    {
-      name: "Dentist",
-      img: "http://picsum.photos/200/200",
-    },
-    {
-      name: "ENT Specialist",
-      img: "http://picsum.photos/200/200",
+      img: generalPhysician,
     },
     {
       name: "Neurologist",
-      img: "http://picsum.photos/200/200",
+      img: neuro,
     },
     {
-      name: "Orthopedic",
-      img: "http://picsum.photos/200/200",
+      name: "Dentist",
+      img: generalPhysician,
     },
     {
       name: "Pediatrician",
-      img: "http://picsum.photos/200/200",
+      img: pedia,
+    },
+    {
+      name: "Orthopedic",
+      img: generalPhysician,
     },
     {
       name: "Psychiatrist",
-      img: "http://picsum.photos/200/200",
+      img: neuro,
     },
     {
       name: "Surgeon",
-      img: "http://picsum.photos/200/200",
+      img: generalPhysician,
     },
     {
       name: "Dermatologist",
-      img: "http://picsum.photos/200/200",
+      img: derma,
+    },
+    {
+      name: "ENT Specialist",
+      img: generalPhysician,
     },
     {
       name: "Gynecologist",
-      img: "http://picsum.photos/200/200",
+      img: gyneco,
     },
     {
       name:"General physician",
-      img: "../assets/general physician.svg"
+      img: generalPhysician
     }
   ];
 
@@ -90,10 +99,15 @@ const Main = (props) => {
         <h1 className="text-3xl font-semibold text-center mt-6">
           Welcome to the world of HealthCare
         </h1>
-        <div className="flex py-4 justify-center mt-10 bg-[#5F6FFF]">
-          <div></div>
-          <div>
-            <img src="../assets/doc image.png" />
+        <div className="flex justify-center mt-10 bg-[#5F6FFF]">
+          <div className="w-1/2 flex flex-col items-center justify-center">
+            <h1 className="text-5xl font-bold  text-white ">Book Appointment <br />With Trusted Doctors</h1>
+            <div class="flex flex-col md:flex-row items-center gap-3 text-white text-sm font-light mt-2"><img class="w-28" src={short_img} alt=""/><p>Simply browse through our extensive list of trusted doctors, <br /> schedule your appointment hassle-free.</p></div>
+
+            <button onClick={()=>navigate('/doctor')} className="self-center py-2 px-4 bg-white rounded-xl mt-4 font-normal text-lg">Book Appointment</button>
+          </div>
+          <div className="w-1/2">
+            <img src={doc_image} />
           </div>
         </div>
       </div>
@@ -150,7 +164,6 @@ const Main = (props) => {
             >
               <img
                 src={doctor.img}
-                alt={doctor.name}
                 className="rounded-lg md:w-52 md:h-64  lg:w-72  object-cover"
               />
               <h3 className="text-green-600 mt-1 ">Available</h3>
