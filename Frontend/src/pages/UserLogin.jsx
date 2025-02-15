@@ -61,6 +61,7 @@ const UserLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             id="password"
+            minLength={6}
             name="password"
             className="border-[1px] border-solid border-gray text-md p-1 rounded-sm"
           />

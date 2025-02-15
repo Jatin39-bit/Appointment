@@ -77,6 +77,7 @@ const UserSignup = () => {
             type="password"
             id="password"
             name="password"
+            minLength={6}
             className="border-[1px] border-solid border-gray text-md p-1 rounded-sm"
           />
           <button

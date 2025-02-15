@@ -65,6 +65,7 @@ const DoctorSignup = () => {
             type="text"
             id="name"
             name="name"
+            minLength={3}
             placeholder="e.g-SAMAR SINGH"
             className="border-[1px]  border-solid border-gray rounded-sm font-extralight text-md"
           />
@@ -90,6 +91,7 @@ const DoctorSignup = () => {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             id="password"
+            minLength={6}
             name="password"
             className="border-[1px] border-solid border-gray text-md rounded-sm"
           />
@@ -103,6 +105,7 @@ const DoctorSignup = () => {
             type="text"
             id="phone"
             name="phone"
+            minLength={10}
             placeholder="e.g- 1234567890"
             className="border-[1px] border-solid border-gray text-md rounded-sm"
           />
@@ -146,6 +149,7 @@ const DoctorSignup = () => {
             onChange={(e) => setClinicAddress(e.target.value)}
             type="text"
             id="clinicAddress"
+            minLength={8}
             name="clinicAddress"
             aria-errormessage="Please enter a valid address"
             placeholder="e.g- 123, XYZ Street, ABC City"
