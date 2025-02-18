@@ -29,9 +29,6 @@ module.exports.loginUser = async (req, res) => {
     }
     const { email, password } = req.body;
     const user = await userSerive.findUser(email);
-    if(user.error){
-        return res.status(400).json({errors:[{msg: result.error}] })
-    }
     const isValidPassword = await user.isValidPassword(password);
     if (!isValidPassword) {
         return res.status(400).json({ errors: [{ msg: 'Invalid password' }] });
