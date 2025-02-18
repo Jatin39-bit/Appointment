@@ -21,7 +21,7 @@ module.exports.findUser = async (email) => {
     }
     const user = await userModel.findOne({email}).select('+password');
     if(!user){
-        throw new Error('User not found');
+        return { error: 'User not found' };
     }
     return user;
 }
