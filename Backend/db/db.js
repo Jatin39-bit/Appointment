@@ -3,10 +3,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 function connectDB() {
-    const fallbackURI = "mongodb+srv://hoodajatin88:ZAQwsxzaqWSX12%23@cluster0.dtjs0.mongodb.net/Appointment-web-app?retryWrites=true&w=majority&appName=Cluster0";
-    const mongoURI = process.env.MONGO_URI || fallbackURI;
+    const mongoURI = process.env.MONGO_URI
     
-    mongoose.connect(fallbackURI, { 
+    mongoose.connect(mongoURI, { 
         useNewUrlParser: true, 
         useUnifiedTopology: true 
     })
