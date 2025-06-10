@@ -18,10 +18,9 @@ const Doctor = (props) => {
     async function fetchData() {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}doctor/getdoctors`, {
         params: { filter: filter },
-      }
-      );
+      });
       setDoctors(res.data);
-        setLoading(false);
+      setLoading(false);
     }
     fetchData();
   }, [filter]);
@@ -35,103 +34,95 @@ const Doctor = (props) => {
         }
 
   return (
-    <div className="px-32">
-      <Navbar />
-      <h1 className="mb-6 mt-2">Browse through the specialist Doctors.</h1>
-      <div className="mb-16 flex gap-6 ">
-        {/* selection for filter */}
-        <div className="w-1/5 text-gray hover:text-black active:text-black">
-          {/* gyneacologist */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("gyneacologist")}  
-            style={{backgroundColor: filter === "gyneacologist" ? "#2563eb" : "white"}}
-          >
-            gyneacologist
-          </p>
-
-          {/* Cardiologist */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("cardiologist")}
-            style={{backgroundColor: filter === "cardiologist" ? "#2563eb" : "white"}}
-
-          >
-            Cardiologist
-          </p>
-          {/* Dentist */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("dentist")}
-            style={{backgroundColor: filter === "dentist" ? "#2563eb" : "white"}}
-          >
-            Dentist
-          </p>
-          {/* Dermatologist */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("dermatologist")}
-            style={{backgroundColor: filter === "dermatologist" ? "#2563eb" : "white"}}
-          >
-            Dermatologist
-          </p>
-          {/* ENT */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("ENT specialist")}
-            style={{backgroundColor: filter === "ENT specialist" ? "#2563eb" : "white"}}
-          >
-            ENT Specialist
-          </p>
-          {/* General Physician */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("general physician")}
-            style={{backgroundColor: filter === "general physician" ? "#2563eb" : "white"}}
-          >
-            General Physician
-          </p>
-          {/* Neurologist */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("neurologist")}
-            style={{backgroundColor: filter === "neurologist" ? "#2563eb" : " white"}}
-          >
-            Neurologist
-          </p>
-          {/* Orthopedic */}
-          <p
-            className="px-4 py-2 border-[1px] border-gray border-solid rounded-md mt-2 mb-3 cursor-pointer hover:bg-blue-600"
-            onClick={() => setFilter("orthopedic")}
-            style={{backgroundColor: filter === "orthopedic" ? "#2563eb" : "white "}}
-          >
-            Orthopedic
-          </p>
-        </div>
-
-        {/* Doctors */}
-        <div className=" mb-8 grid xl:grid-cols-3 lg:grid-cols-2 gap-8 md:grid-cols-2 sm:grid-cols-1 px-4 py-2 w-4/5 ">
-          {doctors.map((doctor, idx) => (
-            <div
-              key={idx}
-              onClick={() => navigate(`/appointment/${doctor._id}`)}
-              className=" bg-gray-100 w-80 h-80 items-center rounded-lg justify-center flex flex-col flex-shrink-0 cursor-pointer"
+    <div className="min-h-screen flex flex-col">
+      <div className="px-4 sm:px-8 md:px-16 lg:px-32">
+        <Navbar />
+        <h1 className="mb-6 mt-2 text-xl md:text-2xl font-medium">Browse through the specialist Doctors.</h1>
+        <div className="flex flex-col md:flex-row gap-6 mb-16">
+          {/* selection for filter */}
+          <div className="w-full md:w-1/5 space-y-3">
+            {/* Filter buttons */}
+            <p
+              className={`px-4 py-2 border rounded-md cursor-pointer transition-all duration-300 ${
+                filter === "gyneacologist" 
+                ? "bg-blue-600 text-white" 
+                : "hover:bg-blue-600 hover:text-white"
+              }`}
+              onClick={() => setFilter("gyneacologist")}
             >
-              <img
-                src={doctor.img}
-                alt={doctor.name}
-                className="rounded-lg md:w-52 md:h-64  lg:w-72  object-cover"
-              />
-              <h3 className="text-green-600 mt-1 ">Available</h3>
-              <h2 className="font-semibold tracking-tighter">{doctor.name}</h2>
-              <h4 className="text-sm text-gray-500 mb-4">
-                {doctor.speciality}
-              </h4>
-            </div>
-          ))}
+              Gyneacologist
+            </p>
+            <p
+              className={`px-4 py-2 border rounded-md cursor-pointer transition-all duration-300 ${
+                filter === "dermatologist" 
+                ? "bg-blue-600 text-white" 
+                : "hover:bg-blue-600 hover:text-white"
+              }`}
+              onClick={() => setFilter("dermatologist")}
+            >
+              Dermatologist
+            </p>
+            <p
+              className={`px-4 py-2 border rounded-md cursor-pointer transition-all duration-300 ${
+                filter === "neurologist" 
+                ? "bg-blue-600 text-white" 
+                : "hover:bg-blue-600 hover:text-white"
+              }`}
+              onClick={() => setFilter("neurologist")}
+            >
+              Neurologist
+            </p>
+            <p
+              className={`px-4 py-2 border rounded-md cursor-pointer transition-all duration-300 ${
+                filter === "pediatrician" 
+                ? "bg-blue-600 text-white" 
+                : "hover:bg-blue-600 hover:text-white"
+              }`}
+              onClick={() => setFilter("pediatrician")}
+            >
+              Pediatrician
+            </p>
+            <p
+              className={`px-4 py-2 border rounded-md cursor-pointer transition-all duration-300 ${
+                filter === "general physician" 
+                ? "bg-blue-600 text-white" 
+                : "hover:bg-blue-600 hover:text-white"
+              }`}
+              onClick={() => setFilter("general physician")}
+            >
+              General Physician
+            </p>
+          </div>
+
+          {/* Doctors grid */}
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {doctors.map((doctor) => (
+              <div
+                key={doctor._id}
+                onClick={() => navigate(`/appointment/${doctor._id}`)}
+                className="bg-gray-50 rounded-lg p-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              >
+                <img
+                  src={doctor.profilePicture}
+                  alt={doctor.name}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <h2 className="font-semibold text-lg">{doctor.name}</h2>
+                <p className="text-gray-600">{doctor.specialization}</p>
+                <p className="text-sm text-gray-500 mt-2">{doctor.clinicAddress}</p>
+                <p className="text-sm text-gray-500">{doctor.experience} years experience</p>
+                <div className="mt-4 flex justify-between items-center">
+                  <p className="text-blue-600 font-medium">₹{doctor.fees}</p>
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all duration-300">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <Footer />
+      <Footer className="mt-auto" />
     </div>
   );
 };

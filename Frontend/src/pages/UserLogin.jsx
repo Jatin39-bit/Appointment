@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Logo from "../components/Logo";
 
 const UserLogin = () => {
   const [email, setEmail] = useState("");
@@ -31,52 +31,68 @@ const UserLogin = () => {
   };
 
   return (
-    <div className="bg-white w-full h-full flex justify-center relative">
-      <div className="border-1 border-solid border-gray-500 shadow-lg w-[30%] sm:w-[50%]  absolute top-[20%]  rounded-lg p-6">
-        <h1 className="text-3xl mb-2 text-center pt-5 font-semibold">
-          Login
+    <div className="bg-white w-full min-h-screen flex justify-center items-center p-4">
+      <div className="border border-gray-300 shadow-lg w-full max-w-md rounded-lg p-6">
+        <div className="flex justify-center mb-6">
+          <Logo />
+        </div>
+        <h1 className="text-2xl md:text-3xl mb-2 text-center font-semibold">
+          Welcome Back
         </h1>
+        <p className="text-sm text-center text-gray-600 mb-6">
+          Please login to your account to continue
+        </p>
 
-        <h2 className="text-sm px-4 text-gray-500">Please login to book appointment</h2>
-        <form className="flex flex-col p-4" onSubmit={handleSubmit}>
+        <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
 
-          <label htmlFor="email" className="font-thin mt-3">
-            Email
-          </label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="e.g- sample@example.com"
-            className="border-[1px] border-solid border-gray p-1 rounded-sm font-extralight text-md"
-          />
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
 
-          <label htmlFor="password" className="font-thin mt-5">
-            Password
-          </label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            id="password"
-            minLength={6}
-            name="password"
-            className="border-[1px] border-solid border-gray text-md p-1 rounded-sm"
-          />
           <button
             type="submit"
-            className="bg-blue-600 text-white p-2 rounded-lg mt-6 mb-4"
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
           >
-            Login
+            Sign In
           </button>
         </form>
-        <h3 className="text-sm text-gray-800">Don't have an Account? <Link className="text-blue-600 underline-offset-2 underline" to="/user/signup">Click here!</Link></h3>
-        <h3 className="text-sm text-gray-800 mt-1">For Doctor's login <Link className="text-blue-600 underline-offset-2 underline" to="/doctor/login">Click here!</Link></h3>
+
+        <p className="text-center mt-6 text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link to="/user/signup" className="text-blue-600 hover:text-blue-700 font-medium">
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );
-}
+};
 
-export default UserLogin
+export default UserLogin;

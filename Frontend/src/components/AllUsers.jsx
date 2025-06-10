@@ -2,29 +2,36 @@
 
 const AllUsers = (props) => {
   return (
-    <div className=" mb-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 w-full">
-    {props.users?.length > 0? props.users.map((user) => (
-      <div  
-        key={user._id}
-        className=" bg-gray-100 w-90 pb-6  items-center rounded-lg justify-center flex flex-col flex-shrink-0 cursor-pointer"
-      >
-        <img
-          src={user.profilePicture}
-          alt={user.name}
-          className="rounded-lg md:w-52 md:h-64  lg:w-72  object-cover"
-        />
-        <h2 className="font-semibold tracking-tighter mt-2">{user.name}</h2>
-        <h2 className="font-semibold tracking-tighter">{user.gender? user.gender: "Not Selected"}</h2>
-        <h4 className="text-sm text-gray-500 mb-2">
-          {user.email}
-        </h4>
-        <button className="p-2 px-4 bg-red-500 rounded-lg"
-        onClick={()=>props.deleteUser(user._id)}
-        >Remove</button>
-      </div>
-    )):(<h1>Loading</h1>)}
-  </div>
-  )
-}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {props.users?.length > 0 ? (
+        props.users.map((user) => (
+          <div  
+            key={user._id}
+            className="bg-gray-50 rounded-lg p-4 flex flex-col hover:shadow-lg transition-all duration-300"
+          >
+            <img
+              src={user.profilePicture}
+              alt={user.name}
+              className="w-full h-48 object-cover rounded-lg mb-4"
+            />
+            <h2 className="text-lg font-semibold">{user.name}</h2>
+            <p className="text-gray-600">{user.gender ? user.gender : "Not Selected"}</p>
+            <p className="text-sm text-gray-500 mt-1">{user.email}</p>
+            <button 
+              onClick={() => props.deleteUser(user._id)}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-300"
+            >
+              Remove
+            </button>
+          </div>
+        ))
+      ) : (
+        <div className="col-span-full flex justify-center items-center">
+          <h1 className="text-xl font-semibold text-gray-600">Loading...</h1>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default AllUsers
+export default AllUsers;

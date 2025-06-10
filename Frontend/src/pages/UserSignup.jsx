@@ -10,7 +10,6 @@ const UserSignup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, password);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}user/register`,
@@ -22,7 +21,7 @@ const UserSignup = () => {
       );
       if (response.status === 201) {
         localStorage.setItem("token", response.data);
-        alert('User registered successfully')
+        alert('User registered successfully');
         navigate("/user/home");
       }
     } catch (error) {
@@ -34,60 +33,73 @@ const UserSignup = () => {
   };
 
   return (
-    <div className="bg-white w-full h-full flex justify-center relative">
-      <div className="border-1 border-solid border-gray-500 shadow-lg w-[30%] sm:w-[50%]  absolute top-[20%]  rounded-lg p-6">
-        <h1 className="text-3xl mb-2 text-center pt-5 font-semibold">
+    <div className="bg-white w-full min-h-screen flex justify-center items-center p-4">
+      <div className="border border-gray-300 shadow-lg w-full max-w-md rounded-lg p-6">
+        <h1 className="text-2xl md:text-3xl mb-2 text-center pt-5 font-semibold">
           Create Account
         </h1>
 
-        <h2 className="text-sm px-4 text-gray-500">Please sign up to book appointment</h2>
+        <h2 className="text-sm px-4 text-gray-500 text-center">Please sign up to book appointments</h2>
         <form className="flex flex-col p-4" onSubmit={handleSubmit}>
-          <label htmlFor="name" className="font-thin mt-3">
-            Name
-          </label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            id="name"
-            name="name"
-            placeholder="e.g-SAMAR SINGH"
-            className="border-[1px]  border-solid border-gray p-1 rounded-sm font-extralight text-md"
-          />
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+                id="name"
+                name="name"
+                placeholder="e.g- John Doe"
+                className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-          <label htmlFor="email" className="font-thin mt-3">
-            Email
-          </label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="e.g- sample@example.com"
-            className="border-[1px] border-solid border-gray p-1 rounded-sm font-extralight text-md"
-          />
+            <div>
+              <label htmlFor="email" className="block text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="e.g- john@example.com"
+                className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-          <label htmlFor="password" className="font-thin mt-5">
-            Password
-          </label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            id="password"
-            name="password"
-            minLength={6}
-            className="border-[1px] border-solid border-gray text-md p-1 rounded-sm"
-          />
+            <div>
+              <label htmlFor="password" className="block text-gray-700 mb-1">
+                Password
+              </label>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                id="password"
+                name="password"
+                minLength={6}
+                className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Minimum 6 characters"
+              />
+            </div>
+          </div>
+
           <button
             type="submit"
-            className="bg-blue-600 text-white p-2 rounded-lg mt-6 mb-4"
+            className="w-full bg-blue-600 text-white p-3 rounded-lg mt-6 mb-4 hover:bg-blue-700 transition-colors duration-300"
           >
-            Create account
+            Create Account
           </button>
         </form>
-        <h3 className="text-sm text-gray-800">Already have an account? <Link className="text-blue-600 underline-offset-2 underline" to="/user/login">Login here</Link></h3>
+        <div className="text-center space-y-2">
+          <h3 className="text-sm text-gray-800">Already have an account? <Link className="text-blue-600 hover:underline" to="/user/login">Login here</Link></h3>
+          <h3 className="text-sm text-gray-800">Are you a doctor? <Link className="text-blue-600 hover:underline" to="/doctor/signup">Sign up as doctor</Link></h3>
+        </div>
       </div>
     </div>
   );

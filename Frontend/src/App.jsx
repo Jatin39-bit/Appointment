@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route} from 'react-router-dom'
+import { Routes, Route, BrowserRouter} from 'react-router-dom'
 import AdminHome from './pages/AdminHome'
 import AdminProtectedWrapper from './components/AdminProtectedWrapper'
 import DoctorHome from './pages/DoctorHome'
@@ -30,6 +30,7 @@ function App() {
 
   return (
     <>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main setFilter={setFilter}/>}/>
         <Route path="/success" element={<Success/>}/>
@@ -52,6 +53,7 @@ function App() {
         <Route path="/user/my-appointments" element={<UserProtectedWrapper><MyAppointments/></UserProtectedWrapper>}/>
         <Route path="/user/my-profile" element={<UserProtectedWrapper><MyProfile/></UserProtectedWrapper>}/>
       </Routes>
+    </BrowserRouter>
     </>
   )
 }

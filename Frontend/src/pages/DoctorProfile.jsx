@@ -94,60 +94,68 @@ const DoctorProfile = () => {
         )}
         {isEditing && (
           <div className="mt-10">
-            <h2 className='text-md mt-2 border-b-[1px] border-solid border-black w-max'>EDIT INFORMATION</h2>
-            <div className="grid grid-cols-1 gap-y-2.5 mt-3 text-[#363636]">
-              <label className="font-medium">Phone:</label>
-              <input
-                type="text"
-                value={editPhone}
-                onChange={(e) => setEditPhone(e.target.value)}
-                className="border border-gray-300 rounded p-2"
-              />
-              <label className="font-medium">Address:</label>
-              <input
-                type="text"
-                value={editAddress}
-                onChange={(e) => setEditAddress(e.target.value)}
-                className="border border-gray-300 rounded p-2"
-              />
-              <label className="font-medium">Gender:</label>
-              <input
-                type="text"
-                value={editGender}
-                onChange={(e) => setEditGender(e.target.value)}
-                className="border border-gray-300 rounded p-2"
-              />
-              <label className="font-medium">Birthday:</label>
-              <input
-                type="date"
-                value={editBirthday}
-                onChange={(e) => setEditBirthday(e.target.value)}
-                className="border border-gray-300 rounded p-2"
-              />
-              <label className="font-medium">Consultation Fee:</label>
-              <input
-                type="text"
-                value={editConsultationFee}
-                onChange={(e) => setEditConsultationFee(e.target.value)}
-                className="border border-gray-300 rounded p-2"
-              />
-              <label className="font-medium">About:</label>
-              <textarea
-                value={editAbout}
-                onChange={(e) => setEditAbout(e.target.value)}
-                className="border border-gray-300 rounded p-2"
-              />
+            <h2 className="text-xl font-semibold text-gray-800 mb-6">Edit Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-gray-700 mb-2">Phone:</label>
+                <input
+                  type="text"
+                  value={editPhone}
+                  onChange={(e) => setEditPhone(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Gender:</label>
+                <select
+                  value={editGender}
+                  onChange={(e) => setEditGender(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Birthday:</label>
+                <input
+                  type="date"
+                  value={editBirthday}
+                  onChange={(e) => setEditBirthday(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Consultation Fee:</label>
+                <input
+                  type="number"
+                  value={editConsultationFee}
+                  onChange={(e) => setEditConsultationFee(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-gray-700 mb-2">Address:</label>
+                <textarea
+                  value={editAddress}
+                  onChange={(e) => setEditAddress(e.target.value)}
+                  rows={3}
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
             </div>
-            <div className="mt-5">
+            <div className="flex gap-4 mt-6">
               <button
-                className="border border-primary px-8 py-2 rounded-full hover:bg-blue-900 hover:text-white bg-blue-600 mr-2"
-                onClick={(e) => handleSave(e)}
+                onClick={handleSave}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
               >
-                Save
+                Save Changes
               </button>
               <button
-                className="border border-primary px-8 py-2 rounded-full hover:bg-red-900 hover:text-white bg-red-600 border-none  outline-none"
                 onClick={() => setIsEditing(false)}
+                className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-300"
               >
                 Cancel
               </button>

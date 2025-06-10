@@ -99,43 +99,54 @@ const MyAppointments = () => {
   };
 
   return (
-    <div className='px-32'>
+    <div className="min-h-screen flex flex-col">
+      <div className="px-4 sm:px-8 md:px-16 lg:px-32">
         <Navbar/>
         <p className="pb-3 mt-12 text-lg font-medium text-gray-600 border-b">My appointments</p>
-              <div className="grid grid-cols-[1fr] gap-4 max-md:flex  sm:gap-6 py-4 border-b">
-                  {loading ? (<h1>Loading...</h1>) :( appointments?.map((appointment)=>(
-                    <div key={appointment._id} className='flex  justify-between items-center gap-4 border-b py-4'>
+        <div className="py-6">
+          {loading ? (
+            <div className="flex justify-center items-center h-48">
+              <h1 className="text-xl font-semibold text-gray-600">Loading...</h1>
+            </div>
+          ) : appointments?.length > 0 ? (
+            <div className="space-y-6">
+              {appointments?.map((appointment) => (
+                <div key={appointment._id} className="flex flex-col md:flex-row items-start gap-6 p-6 bg-gray-50 rounded-lg hover:shadow-lg transition-all duration-300">
+                  <div className="w-full md:w-48 h-48 flex-shrink-0">
+                    <img 
+                      className="w-full h-full object-cover rounded-lg" 
+                      src={appointment.doctor.profilePicture} 
+                      alt={appointment.doctor.name}
+                    />
+                  </div>
+                  <div className="flex-1 space-y-4">
                     <div>
-                    <img className="w-36 rounded-lg bg-[#EAEFFF]" src={appointment.doctor.profilePicture} alt=""/>
+                      <p className="text-xl font-semibold text-gray-900">{appointment.doctor.name}</p>
+                      <p className="text-lg text-gray-600">{appointment.doctor.specialization}</p>
                     </div>
-                    <div className="flex-1 text-sm text-[#5E5E5E]">
-                    <p className="text-[#262626] text-base font-semibold">{appointment.doctor.name}</p>
-                    <p>{appointment.doctor.specialization}</p>
-                    <p className="text-[#464646] font-medium mt-1">Address:</p>
-                    <p className="">{appointment.doctor.clinicAddress}</p>
-                    <p className=" mt-1"><span className="text-sm text-[#3C3C3C] font-medium">Date &amp; Time:</span> {appointment.date} {monthNames[new Date().getMonth()]} {new Date().getFullYear()} |  {appointment.timeslot}</p>
-                </div>
-                <div className="flex flex-col gap-2 justify-end text-sm text-center">
-                    <button 
-                      className={`text-[#696969] sm:min-w-48 py-2 border rounded ${appointment.status === "Pending" ? "hover:bg-blue-600 hover:text-white" : "bg-green-600 text-white cursor-not-allowed"}`}
-                      onClick={() => appointment.status === "Pending" && handlePayment(appointment._id)}
-                      disabled={appointment.status !== "Pending"}
-                    >
-                      {appointment.status === "Pending" ? "Pay Online" : appointment.status}
-                    </button>
-                    {appointment.status !== "Paid" && (
-                      <button 
-                        className="text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white"
-                        onClick={() => cancelAppointment(appointment._id)}
-                      >
-                        Cancel appointment
-                      </button>
-                    )}
-                </div>
+                    <div>
+                      <p className="text-gray-700 font-medium">Address:</p>
+                      <p className="text-gray-600">{appointment.doctor.clinicAddress}</p>
                     </div>
-                  )))}
+                    <div>
+                      <p className="text-gray-700 font-medium">Date & Time:</p>
+                      <p className="text-gray-600">
+                        {appointment.date} {monthNames[new Date().getMonth()]} {new Date().getFullYear()} | {appointment.timeslot}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-48 text-center">
+              <p className="text-xl font-semibold text-gray-600">No appointments found</p>
+              <p className="text-gray-500 mt-2">Book an appointment with our doctors</p>
+            </div>
+          )}
         </div>
-        <Footer/>
+      </div>
+      <Footer className="mt-auto" />
     </div>
   )
 }

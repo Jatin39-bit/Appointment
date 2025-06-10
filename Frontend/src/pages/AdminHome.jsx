@@ -8,6 +8,7 @@ import { useEffect, useRef,useState } from 'react'
 import AllAppointments from '../components/AllAppointments'
 import AllDoctors from '../components/AllDoctors'
 import AllUsers from '../components/AllUsers'
+import Logo from '../components/Logo'
 
 const AdminHome = () => {
   const AllDoctorsComponentRef= useRef(null)
@@ -160,56 +161,68 @@ useGSAP(
 ,[AllAppointmentsComponent])
 
   return (
-    <div className='px-32'>
-          <div className="pt-4 pb-4 flex justify-between  items-center border-b-[2px] border-gray-300 border-solid">
-        <Link to="/admin/home" className="text-4xl font-semibold">Logo</Link>
-        <div className="flex gap-4 items-center">
-            <h2 onClick={async ()=>{
-              await getAllDoctors()
-              setAllDoctorsComponent(true)
-              setAllUsersComponent(false)
-              setAllAppointmentsComponent(false)
-              }} className='cursor-pointer'>
+    <div className="min-h-screen flex flex-col">
+      <div className="px-4 sm:px-8 md:px-16 lg:px-32">
+        <div className="py-4 flex flex-col md:flex-row justify-between items-center border-b-2 border-gray-300 gap-4">
+          <Logo />
+          <div className="flex flex-wrap justify-center gap-4 items-center">
+            <button 
+              onClick={async () => {
+                await getAllDoctors()
+                setAllDoctorsComponent(true)
+                setAllUsersComponent(false)
+                setAllAppointmentsComponent(false)
+              }} 
+              className="hover:text-blue-600 transition-colors duration-300"
+            >
               ALL DOCTORS
-            </h2>
-            <h2 onClick={async ()=>{
-              await getAllUsers()
-              setAllDoctorsComponent(false)
-              setAllAppointmentsComponent(false)
-              setAllUsersComponent(true)
-              }} className='cursor-pointer'>
+            </button>
+            <button 
+              onClick={async () => {
+                await getAllUsers()
+                setAllDoctorsComponent(false)
+                setAllAppointmentsComponent(false)
+                setAllUsersComponent(true)
+              }} 
+              className="hover:text-blue-600 transition-colors duration-300"
+            >
               ALL USERS
-            </h2>
-            <h2 onClick={async ()=>{
-              await getAllAppointments()
-              setAllDoctorsComponent(false)
-              setAllUsersComponent(false)
-              setAllAppointmentsComponent(true)
-              }} className='cursor-pointer'>
+            </button>
+            <button 
+              onClick={async () => {
+                await getAllAppointments()
+                setAllDoctorsComponent(false)
+                setAllUsersComponent(false)
+                setAllAppointmentsComponent(true)
+              }} 
+              className="hover:text-blue-600 transition-colors duration-300"
+            >
               ALL APPOINTMENTS
-            </h2>
+            </button>
+          </div>
+          <button 
+            onClick={() => logout()} 
+            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-300"
+          >
+            LOGOUT
+          </button>
         </div>
-        <button onClick={()=>logout()} className='bg-gray-500 rounded-lg p-2'>LOGOUT
-        </button>
-    </div>
 
+        {/* All doctors panel */}
+        <div ref={AllDoctorsComponentRef} className="hidden p-4">
+          <AllDoctors doctors={doctors} deleteDoctor={deleteDoctor}/>
+        </div>
 
-    {/* All doctors pannel */}
-    <div ref={AllDoctorsComponentRef} className='hidden p-4'>
-      <AllDoctors doctors={doctors} deleteDoctor={deleteDoctor}/>
-    </div>
+        {/* All users panel */}
+        <div ref={AllUsersComponentRef} className="hidden p-4">
+          <AllUsers users={users} deleteUser={deleteUser}/>
+        </div>
 
-    {/* All users pannel */}
-    <div ref={AllUsersComponentRef} className='hidden p-4'>
-      <AllUsers users={users} deleteUser={deleteUser}/>
-    </div>
-
-    {/* All appointments pannel */}
-    <div ref={AllAppointmentsComponentRef} className='hidden p-4'>
-      <AllAppointments appointments={appointments}/>
+        {/* All appointments panel */}
+        <div ref={AllAppointmentsComponentRef} className="hidden p-4">
+          <AllAppointments appointments={appointments}/>
+        </div>
       </div>
-
-
     </div>
   )
 }

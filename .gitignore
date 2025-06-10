@@ -2,3 +2,5 @@ key.pub
 key2.pub
 key 
 key2    
+node_modules
+.env
